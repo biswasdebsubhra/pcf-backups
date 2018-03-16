@@ -4,7 +4,7 @@
 
 #bakup_time=$(date +"%F"-"%S")
 
-backup-timestamp=$(date +"%Y-%m-%d-%S")
+backup_timestamp=$(date +"%Y-%m-%d-%S")
 e=$?
 pushd ../../../ert-backup-artifact 
   ../binary/bbr deployment --target "${BOSH_ADDRESS}" \
@@ -26,5 +26,5 @@ pushd ../../../ert-backup-artifact
   --deployment "${ERT_DEPLOYMENT_NAME}" \
   --ca-cert "${BOSH_CA_CERT_PATH}" \
   backup --with-manifest
-  tar -cvf ert-backup-$backup-timestamp.tar -- *
+  tar -cvf ert-backup-$backup_timestamp.tar -- *
 popd
