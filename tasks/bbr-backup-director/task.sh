@@ -9,7 +9,7 @@ BOSH_PRIVATE_KEY=$(jq -r '.credential.value.private_key_pem' bbr_keys.json
 
 backup-timestamp=$(date +"%Y-%m-%d-%S")
 e=$?
-pushd ../../../director-backup-artifact
+pushd ../../../director-backup-artifact <<EOF
   ../binary/bbr director --host "${BOSH_ADDRESS}" \
   --username bbr \
   --private-key-path <(echo "${BBR_PRIVATE_KEY}") \
@@ -29,4 +29,4 @@ pushd ../../../director-backup-artifact
     
   tar -cvf director-backup-$backup-timestamp.tar -- *
 popd
-
+EOF

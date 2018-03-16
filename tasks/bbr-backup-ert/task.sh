@@ -6,7 +6,7 @@
 
 backup-timestamp=$(date +"%Y-%m-%d-%S")
 e=$?
-pushd ../../../ert-backup-artifact
+pushd ../../../ert-backup-artifact <<EOF
   ../binary/bbr deployment --target "${BOSH_ADDRESS}" \
   --username "${BOSH_CLIENT}" \
   --deployment "${ERT_DEPLOYMENT_NAME}" \
@@ -28,3 +28,4 @@ pushd ../../../ert-backup-artifact
   backup --with-manifest
   tar -cvf ert-backup-$backup-timestamp.tar -- *
 popd
+EOF
